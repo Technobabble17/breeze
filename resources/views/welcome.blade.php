@@ -128,5 +128,7 @@
                 </div>
             </div>
         </div>
+        <a href="{{ route('addresses.index') }}">Address Book</a>
+        <a href="{{ route('posts.index') }}">Blog Posts</a>
     </body>
 </html>
