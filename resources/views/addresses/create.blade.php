@@ -1,103 +1,86 @@
-<!doctype html>
-
-
-
-<title> My Blog </title>
-<link rel="stylesheet" href="/app.css">
-
-<body>
-
-    <nav>
-
-
-    </nav>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Address Book') }} {{--i18n https://laravel.com/docs/8.x/localization --}}
+        </h2>
+        <a class="text-blue-600 border-b-2 border-transparent hover:border-blue-600 transition duration-300 ease-in-out" href="{{ route('addresses.create') }}">+ New Address</a>
+    </x-slot>
     <form method="post" action="{{ route('addresses.store') }}">
         {{ csrf_field() }}
 
-        <div class="form-group row">
-            <label for="firstname" class="col-sm-3 col-form-label">First name</label>
-            <div class="col-sm-9">
-                <textarea name="firstname" type="text" class="form-control" placeholder="First">{{old('firstname')}}</textarea>
-                @error('firstname') <p style="color:red"> {{ $message }}</p>  @enderror
-
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <label for="firstname" class="col-sm-3 col-form-label">First name</label>
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <textarea name="firstname" type="text" class="form-control" placeholder="First Name">{{old('firstname')}}</textarea>
+                    @error('firstname') <p style="color:red"> {{ $message }}</p>  @enderror
+                </div>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="lastname" class="col-sm-3 col-form-label">Last name</label>
-            <div class="col-sm-9">
-                <textarea name="lastname" type="text" class="form-control" placeholder="Last">{{old('lastname')}}</textarea>
-                @error('lastname') <p style="color:red"> {{ $message }}</p>  @enderror
-
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <label for="lastname" class="col-sm-3 col-form-label">Last name</label>
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <textarea name="lastname" type="text" class="form-control" placeholder="Last Name">{{old('lastname')}}</textarea>
+                    @error('lastname') <p style="color:red"> {{ $message }}</p>  @enderror
+                </div>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="address1" class="col-sm-3 col-form-label">Address line 1</label>
-            <div class="col-sm-9">
-                <textarea name="address1" type="text" class="form-control" placeholder="Address 1"></textarea>
-                @error('address1') <p style="color:red"> {{ $message }}</p>  @enderror
-
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <label for="address1" class="col-sm-3 col-form-label">Address 1</label>
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <textarea name="address1" type="text" class="form-control" placeholder="Address1">{{old('address1')}}</textarea>
+                    @error('address1') <p style="color:red"> {{ $message }}</p>  @enderror
+                </div>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="address2" class="col-sm-3 col-form-label">Address line 2</label>
-            <div class="col-sm-9">
-                <textarea name="address2" type="text" class="form-control" placeholder="Address 2">{{old('address2')}}</textarea>
-                @error('address2') <p style="color:red"> {{ $message }}</p>  @enderror
-
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <label for="address2" class="col-sm-3 col-form-label">Address 2</label>
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <textarea name="address2" type="text" class="form-control" placeholder="Address2">{{old('address2')}}</textarea>
+                    @error('address2') <p style="color:red"> {{ $message }}</p>  @enderror
+                </div>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="city" class="col-sm-3 col-form-label">City</label>
-            <div class="col-sm-9">
-                <textarea name="city" type="text" class="form-control" placeholder="Colorado Springs">{{old('city')}}</textarea>
-                @error('city') <p style="color:red"> {{ $message }}</p>  @enderror
-
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <label for="city" class="col-sm-3 col-form-label">City</label>
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <textarea name="city" type="text" class="form-control" placeholder="City">{{old('city')}}</textarea>
+                    @error('city') <p style="color:red"> {{ $message }}</p>  @enderror
+                </div>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="state" class="col-sm-3 col-form-label">State Abbreviation</label>
-            <div class="col-sm-9">
-                <input name="state" type="text" class="form-control" placeholder="AL" pattern="[A-Z]{2}" onkeyup="this.value = this.value.toUpperCase();" value="{{old('state')}}"/> {{--this work but doesnt maintain cursor position when correcting a mistake, apparently needs javascript?--}}
-                {{--<textarea name="state" type="text" class="form-control" placeholder="CO">{{old('state')}}</textarea>--}}
-                @error('state') <p style="color:red"> {{ $message }}</p>  @enderror
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <label for="state" class="col-sm-3 col-form-label">State</label>
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <textarea name="state" type="text" class="form-control" placeholder="AL">{{old('state')}}</textarea>
+                    @error('state') <p style="color:red"> {{ $message }}</p>  @enderror
+                </div>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="zip" class="col-sm-3 col-form-label">Zip</label>
-            <div class="col-sm-9">
-                <textarea name="zip" type="number" class="form-control" placeholder="#####">{{old('zip')}}</textarea>
-                @error('zip') <p style="color:red"> {{ $message }}</p>  @enderror
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <label for="zip" class="col-sm-3 col-form-label">Zip Code</label>
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <textarea name="zip" type="text" class="form-control" placeholder="#####">{{old('zip')}}</textarea>
+                    @error('zip') <p style="color:red"> {{ $message }}</p>  @enderror
+                </div>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="email" class="col-sm-3 col-form-label">Email</label>
-            <div class="col-sm-9">
-                <textarea name="email" type="string" class="form-control" placeholder="jon@conflare.com">{{old('email')}}</textarea>
-                @error('email') <p style="color:red"> {{ $message }}</p>  @enderror
-
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <label for="email" class="col-sm-3 col-form-label">Email Address</label>
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <textarea name="email" type="text" class="form-control" placeholder="jon@conflare.com">{{old('email')}}</textarea>
+                    @error('email') <p style="color:red"> {{ $message }}</p>  @enderror
+                </div>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="primaryphone" class="col-sm-3 col-form-label">Primary Phone</label>
-            <div class="col-sm-9">
-                <textarea name="primaryphone" type="string" class="form-control" placeholder="(330)527-5263">{{old('primaryphone')}}</textarea>
-                @error('primaryphone') <p style="color:red"> {{ $message }}</p>  @enderror
-
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <label for="primaryphone" class="col-sm-3 col-form-label">Primary Phone</label>
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <textarea name="primaryphone" type="text" class="form-control" placeholder="1234567890">{{old('primaryphone')}}</textarea>
+                    @error('primaryphone') <p style="color:red"> {{ $message }}</p>  @enderror
+                </div>
             </div>
-        </div>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-64">
+                <input class="rounded-lg text-white text-2xl col-sm-3 col-form-label cursor-pointer p-2 px-8 bg-blue-600 hover:bg-green-600 transition duration-200 ease-in-out" type="submit" value="Save"></input>
+            </div>
 
-        <input type="submit" value="Save"></input>
 
+           {{-- <div class="mb-8 bg-white overflow-hidden shadow-sm sm:rounded-lg">      just keeping for styling reference
+                <article class="p-6 bg-white border-b border-gray-200">
 
+                </article>
+            </div>--}}
     </form>
-    <br><br><br><br><br><br>
-    <a href="{{ route('addresses.index') }}">Back<br></a>
-</body>
+
+</x-app-layout>

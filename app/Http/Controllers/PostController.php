@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Auth\StorePostRequest;
-use App\Http\Requests\Auth\UpdatePostRequest;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;

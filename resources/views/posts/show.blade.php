@@ -1,17 +1,20 @@
-<!doctype html>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Blog Post') }} {{--i18n https://laravel.com/docs/8.x/localization --}}
+        </h2>
+        <a class="text-blue-600 border-b-2 border-transparent hover:border-blue-600 transition duration-300 ease-in-out" href="{{ route('posts.create') }}">+ New Post</a>
+    </x-slot>
 
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="mb-8 bg-white overflow-hidden shadow-2xl sm:rounded-lg">
+                <article class="p-6 bg-gray-300 border-b border-gray-200">
+                    <h2 class="text-2xl bold pb-4">{{ $post->title }}</h2>
+                    <p>{{ $post->content }}</p>
+                </article>
+            </div>
+        </div>
+    </div>
 
-
-<title> My Blog </title>
-<link rel="stylesheet" href="/app.css">
-
-<body>
-
-        <article>
-
-            <a href="{{ route('posts.index') }}"> Back </a>
-            <h2>{{ $post->title }}</h2>
-            <p>{{ $post->content }}</p>
-        </article>
-
-</body>
+</x-app-layout>
