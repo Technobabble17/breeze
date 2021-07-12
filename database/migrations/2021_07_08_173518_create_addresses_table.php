@@ -25,7 +25,7 @@ class CreateAddressesTable extends Migration
             $table->integer('zip');
             $table->string('email');
             $table->string('primaryphone');
-
+            $table->integer('user_id');
         });
     }
 

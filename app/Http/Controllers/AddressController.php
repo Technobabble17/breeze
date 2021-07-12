@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAddressRequest;
 use App\Http\Requests\UpdateAddressRequest;
 use App\Models\Address;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
@@ -38,9 +40,14 @@ class AddressController extends Controller
      */
     public function store(StoreAddressRequest $request)
     {
+        $user = Auth::user();
+        $user->user_id=auth()->id();
+        //$input['user_id'] = $user->user_id;
+        // $address->user_id = auth()->user()->id;
         $data = $request->except("_token"); //except, only, all, get(field name)
         $address = Address::create($data);
         return redirect(route('addresses.show', ['address'=> $address->id])); //lets see if we can change to just load addresses.index
+
     }
 
     /**
@@ -75,6 +82,7 @@ class AddressController extends Controller
      */
     public function update(UpdateAddressRequest $request, Address $address)
     {
+
         $data = $request->except('_token', '_method'); //except, only, all, get(field name)
         $address-> update($data);
         return redirect(route('addresses.show', ['address'=> $address->id]));

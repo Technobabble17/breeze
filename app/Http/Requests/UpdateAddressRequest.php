@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
+use Illuminate\Validation\Rule;
 
 class UpdateAddressRequest extends StoreAddressRequest
 {
@@ -12,7 +13,8 @@ class UpdateAddressRequest extends StoreAddressRequest
     public function rules()
     {
         $rules = parent::rules();
-        $rules['address1'] = ['required', 'min:5']; //should have something about not being able to change first and last name, see if there is something about not being editable
+       // dd($this->route("address"));
+        $rules['email'] = ['required', Rule::unique('addresses')->ignore($this->route("address")->id)]; //
         return $rules;
     }
 }
