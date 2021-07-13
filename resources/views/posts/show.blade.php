@@ -1,9 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
+        @if (Auth::check())
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Blog Post') }} {{--i18n https://laravel.com/docs/8.x/localization --}}
+            {{ __('Blog Post') }}
         </h2>
         <a class="text-blue-600 border-b-2 border-transparent hover:border-blue-600 transition duration-300 ease-in-out" href="{{ route('posts.create') }}">+ New Post</a>
+        @else
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Public Blog Posts') }}
+        </h2>
+        @endif
     </x-slot>
 
     <div class="py-12">
@@ -16,5 +22,4 @@
             </div>
         </div>
     </div>
-
 </x-app-layout>

@@ -6,8 +6,6 @@ use App\Http\Requests\StoreAddressRequest;
 use App\Http\Requests\UpdateAddressRequest;
 use App\Models\Address;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
-use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
@@ -18,10 +16,9 @@ class AddressController extends Controller
      */
     public function index() //list view of all items
     {
-        $addresses = Address::get();
+        $addresses = Address::all();
         return view('addresses.index', ["addresses" => $addresses]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -31,7 +28,6 @@ class AddressController extends Controller
     {
         return view('addresses.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -40,16 +36,11 @@ class AddressController extends Controller
      */
     public function store(StoreAddressRequest $request)
     {
-        $user = Auth::user();
-        $user->user_id=auth()->id();
-        //$input['user_id'] = $user->user_id;
-        // $address->user_id = auth()->user()->id;
-        $data = $request->except("_token"); //except, only, all, get(field name)
-        $address = Address::create($data);
-        return redirect(route('addresses.show', ['address'=> $address->id])); //lets see if we can change to just load addresses.index
-
+        $user = \App\Models\User::find(Auth::user()->id);
+        $data = $request->except("_token");
+        $address = $user->addresses()->create($data);
+        return redirect(route('addresses.show', ['address'=> $address->id]));
     }
-
     /**
      * Display the specified resource.
      *
@@ -59,9 +50,7 @@ class AddressController extends Controller
     public function show(Address $address)
     {
         return view('addresses.show', ["address" => $address]);
-
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -72,7 +61,6 @@ class AddressController extends Controller
     {
         return view('addresses.edit', ["address" => $address]); //this passes in all the information from the address Model.   this will show the blade for editing, but how to specify which address to update
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -82,12 +70,10 @@ class AddressController extends Controller
      */
     public function update(UpdateAddressRequest $request, Address $address)
     {
-
-        $data = $request->except('_token', '_method'); //except, only, all, get(field name)
+        $data = $request->except('_token', '_method');
         $address-> update($data);
         return redirect(route('addresses.show', ['address'=> $address->id]));
     }
-
     /**
      * Remove the specified resource from storage.
      *

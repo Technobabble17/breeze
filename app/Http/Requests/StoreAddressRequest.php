@@ -25,7 +25,6 @@ class StoreAddressRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
             'firstname' => ['required', 'max:25', 'alpha'],
             'lastname' => ['required', 'max:25', 'alpha'],
@@ -36,10 +35,6 @@ class StoreAddressRequest extends FormRequest
             'zip' => ['required', 'size:5'],
             'primaryphone' => ['nullable', 'size:10'],
             'email' => ['required', Rule::unique('addresses')]
-            //'email' => [Rule::unique addresses,('email')->ignore($id)]
-          //  'email' => Validator::make($data, ['email' => ['required', Rule::unique('addresses')->ignore($address->id)]]);
         ];
-
-            // Validator::make($data, ['email' => ['required', Rule::unique('addresses')->ignore($email>id)]])
     }
 }

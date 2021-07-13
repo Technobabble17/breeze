@@ -11,22 +11,22 @@
             @method('PUT')
             @csrf
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <label for="firstname" class="col-sm-3 col-form-label">Title</label>
+                <label for="title" class="col-sm-3 col-form-label">Title</label>
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <textarea name="firstname" type="text" class="form-control" >{{ $post->title }}</textarea>
-                    @error('firstname') <p style="color:red"> {{ $message }}</p>  @enderror
+                    <input name="title" type="text" class="form-control" placeholder="Post Title" value="{{old('title', $post->title)}}"/>
+                    @error('title') <p style="color:red"> {{ $message }}</p>  @enderror
                 </div>
             </div>
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <label for="lastname" class="col-sm-3 col-form-label">Content</label>
+                <label for="content" class="col-sm-3 col-form-label">Content</label>
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <textarea name="lastname" type="text" class="form-control">{{ $post->content }}</textarea>
-                    @error('lastname') <p style="color:red"> {{ $message }}</p>  @enderror
+                    <textarea name="content" type="text" class="form-control" placeholder="Post Content">{{old('content', $post->content)}}</textarea> {{--content is passed in from the post controller when it loads.--}}
+                    @error('content') <p style="color:red"> {{ $message }}</p>  @enderror
                 </div>
             </div>
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-64">
                 <input class="rounded-lg text-white text-2xl col-sm-3 col-form-label cursor-pointer p-2 px-8 bg-blue-600 hover:bg-green-600 transition duration-200 ease-in-out" type="submit" value="Save"></input>
             </div>
     </form>
-
+@dd($errors->all())
 </x-app-layout>

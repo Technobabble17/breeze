@@ -14,7 +14,7 @@ class CreateAddressesTable extends Migration
     public function up()
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->id()->index();
+            $table->id();
             $table->timestamps(); //creates 2 columns
             $table->text('firstname');
             $table->text('lastname');
@@ -25,7 +25,7 @@ class CreateAddressesTable extends Migration
             $table->integer('zip');
             $table->string('email');
             $table->string('primaryphone');
-            $table->integer('user_id');
+
         });
     }
 
