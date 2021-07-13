@@ -27,6 +27,9 @@
                     <x-nav-link :href="route('addresses.index')" :active="request()->routeIs('addresses.*')">
                         {{ __('Address Book') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('images.index')" :active="request()->routeIs('images.*')">
+                        {{ __('Image Library') }}
+                    </x-nav-link>
                     @endif
                 </div>
             </div>

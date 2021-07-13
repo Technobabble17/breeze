@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +28,6 @@ Route::get('/dashboard', function () {
 Route::resource('/posts', PostController::class);
 Route::resource('/addresses', AddressController::class);
 Route::resource('/blog', BlogController::class)->only(['index', 'show']);
+Route::resource('/images', ImageController::class);
 
 require __DIR__.'/auth.php';
