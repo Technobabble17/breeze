@@ -50,4 +50,9 @@ class User extends Authenticatable
         return $this->hasMany(Post::class); //leading with backslash resolves to the root, always use this format
     }
 
+    public function images()
+    {
+        return $this->hasMany(Image::class); //leading with backslash resolves to the root, always use this format
+    }
+
 }

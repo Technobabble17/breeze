@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreAddressRequest;
 use App\Http\Requests\UpdateAddressRequest;
 use App\Models\Address;
@@ -14,8 +15,10 @@ class AddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() //list view of all items
+    public function index(Request $request) //list view of all items
     {
+        // $uri = $request->path();
+        // dd($uri);
         $addresses = Address::all();
         return view('addresses.index', ["addresses" => $addresses]);
     }
@@ -49,7 +52,7 @@ class AddressController extends Controller
      */
     public function show(Address $address)
     {
-        return view('addresses.show', ["address" => $address]);
+        return view('addresses.show', ["address" => $address,]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -59,7 +62,7 @@ class AddressController extends Controller
      */
     public function edit(Address $address)
     {
-        return view('addresses.edit', ["address" => $address]); //this passes in all the information from the address Model.   this will show the blade for editing, but how to specify which address to update
+        return view('addresses.edit', ["address" => $address]);
     }
     /**
      * Update the specified resource in storage.

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use App\Http\Requests\StoreImageRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
@@ -15,8 +17,8 @@ class ImageController extends Controller
      */
     public function index()
     {
-        $path = Image::all();
-        $images = Storage::disk('public')->url($path); //to be used in the img html tag
+        $images = Image::all(); //this returns a collection
+        //$images = Storage::disk('public')->url($path); //
         return view('images.index', ["images" => $images]);
     }
 
@@ -37,10 +39,13 @@ class ImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreImageRequest $request)
     {
-        $path = Storage::disk('public')->putFile('images', $request->file('file')); //putFile gives the $path
-        //dd($path);
+        $user = \App\Models\User::find(Auth::user()->id);
+        $data = $request->only("title", "description");
+        $data['path'] = Storage::disk('public')->putFile('images', $request->file('file'));
+        $user->images()->create($data);
+        return redirect(route('images.index'));
     }
 
     /**
@@ -83,8 +88,9 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Image $image)
     {
-        //
+         $image->delete();
+         return redirect(route('images.index'));
     }
 }

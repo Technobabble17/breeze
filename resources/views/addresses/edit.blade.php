@@ -73,7 +73,8 @@
                     @error('primaryphone') <p style="color:red"> {{ $message }}</p>  @enderror
                 </div>
             </div>
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-64">
+            <x-element.image-dropdown title="Choose your image:" field-name="image_id"/>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-64 mt-16">
                 <input class="rounded-lg text-white text-2xl col-sm-3 col-form-label cursor-pointer p-2 px-8 bg-blue-600 hover:bg-green-600 transition duration-200 ease-in-out" type="submit" value="Save"></input>
             </div>
     </form>

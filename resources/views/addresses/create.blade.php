@@ -74,13 +74,6 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-64">
                 <input class="rounded-lg text-white text-2xl col-sm-3 col-form-label cursor-pointer p-2 px-8 bg-blue-600 hover:bg-green-600 transition duration-200 ease-in-out" type="submit" value="Save"></input>
             </div>
-
-
-           {{-- <div class="mb-8 bg-white overflow-hidden shadow-sm sm:rounded-lg">      just keeping for styling reference
-                <article class="p-6 bg-white border-b border-gray-200">
-
-                </article>
-            </div>--}}
     </form>
 
 </x-app-layout>

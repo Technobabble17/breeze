@@ -25,9 +25,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('/posts', PostController::class);
-Route::resource('/addresses', AddressController::class);
-Route::resource('/blog', BlogController::class)->only(['index', 'show']);
-Route::resource('/images', ImageController::class);
 
 require __DIR__.'/auth.php';
+
+Route::resource('/blog', BlogController::class)->only(['index', 'show']);
+
+Route::middleware('auth')->group(function()
+{
+    Route::resource('/posts', PostController::class);
+    Route::resource('/addresses', AddressController::class);
+    Route::resource('/images', ImageController::class);
+});

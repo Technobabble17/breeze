@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
-class StoreAddressRequest extends FormRequest
+class StoreImageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class StoreAddressRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -25,8 +25,10 @@ class StoreAddressRequest extends FormRequest
     public function rules()
     {
         return [
+            'file' => ['required', 'mimes:png,jpg,jpeg'],
             'title' => ['required', 'max:25', 'regex:/^[a-zA-Z0-9\s]+$/'],
-            'description' => ['max:255', 'regex:/^[a-zA-Z0-9\s]+$/'],
-        ];
+            'description' => ['max:255', 'regex:/^[a-zA-Z0-9\s]+$/']
+
+            ];
     }
 }
